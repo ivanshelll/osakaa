@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Osaka Sushi — Asunción, Paraguay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #080808;
+      --deep: #0f0f0f;
+      --red: #c8002b;
+      --red-glow: #e8003a;
+      --gold: #c9a84c;
+      --cream: #f5ede0;
+      --white: #fafafa;
+      --muted: #888;
+      --border: rgba(255,255,255,0.07);
+    }
+
+```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--red); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--red); }
+
+.nav-cta {
+  background: var(--red);
+  color: #fff !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 2px;
+  font-weight: 600 !important;
+}
+.nav-cta:hover { background: var(--red-glow); color: #fff !important; }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0 3rem;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 65% 50%, rgba(200,0,43,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 80% at 90% 20%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    #080808;
+}
+
+/* Japanese wave pattern */
+.hero-pattern {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 620px;
+  height: 620px;
+  opacity: 0.07;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  animation: heroIn 1.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 .line-red { color: var(--red); }
+.hero h1 .kanji {
+  font-size: 0.55em;
+  color: rgba(255,255,255,0.2);
+  margin-left: 0.3em;
+  vertical-align: middle;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+  max-width: 460px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--red);
+  color: #fff;
+  padding: 0.9rem 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--red-glow); transform: translateY(-2px); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  padding: 0.9rem 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: border-color 0.3s, color 0.3s, transform 0.2s;
+}
+.btn-outline:hover {
+  border-color: var(--red);
+  color: var(--red);
+  transform: translateY(-2px);
+}
+
+/* Floating stats */
+.hero-stats {
+  position: absolute;
+  right: 3rem;
+  bottom: 4rem;
+  display: flex;
+  gap: 2.5rem;
+  animation: heroIn 1.4s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--white);
+  display: block;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.3);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── SECTION BASE ── */
+section { padding: 7rem 3rem; }
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1rem;
+}
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--red);
+}
+.section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+/* ── ABOUT ── */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.about-text p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+.feature-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.2rem;
+}
+.feature-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.feature-card h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+}
+.feature-card p {
+  font-size: 0.78rem !important;
+  color: rgba(255,255,255,0.4) !important;
+  margin: 0 !important;
+}
+
+.about-visual {
+  position: relative;
+}
+.about-img-frame {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: rgba(200,0,43,0.06);
+  border: 1px solid rgba(200,0,43,0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-img-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 30%, rgba(200,0,43,0.15) 0%, transparent 70%);
+}
+.sushi-art {
+  font-size: 8rem;
+  filter: drop-shadow(0 0 40px rgba(200,0,43,0.4));
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.about-badge {
+  position: absolute;
+  top: -1.5rem;
+  right: -1.5rem;
+  background: var(--red);
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 0.65rem;
+  text-align: center;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.about-badge strong { font-size: 1.4rem; display: block; }
+
+/* ── MENU ── */
+.menu-section { background: var(--black); }
+.menu-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.menu-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+.tab-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: rgba(255,255,255,0.5);
+  padding: 0.5rem 1.2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.tab-btn.active, .tab-btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.menu-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.menu-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200,0,43,0.4);
+}
+.menu-card-img {
+  background: linear-gradient(135deg, rgba(200,0,43,0.1), rgba(201,168,76,0.05));
+  padding: 2rem;
+  font-size: 4.5rem;
+  text-align: center;
+  display: block;
+}
+.menu-card-body { padding: 1.2rem 1.4rem 1.5rem; }
+.menu-card-body h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.menu-card-body p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.menu-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.price {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+.price-old {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: line-through;
+  margin-left: 0.4rem;
+}
+.tag-promo {
+  background: rgba(200,0,43,0.15);
+  border: 1px solid rgba(200,0,43,0.3);
+  color: var(--red);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+}
+
+/* Menu executivo table */
+.exec-menu {
+  display: none;
+}
+.exec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.exec-category {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.exec-cat-header {
+  background: var(--red);
+  padding: 0.8rem 1.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.exec-items { padding: 1rem 0; }
+.exec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.88rem;
+}
+.exec-item:last-child { border-bottom: none; }
+.exec-item-name { color: rgba(255,255,255,0.75); }
+.exec-item-price { color: var(--gold); font-weight: 600; font-family: 'Shippori Mincho', serif; }
+.exec-note {
+  padding: 0.8rem 1.4rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  border-top: 1px solid var(--border);
+}
+.exec-total {
+  padding: 1rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(200,0,43,0.08);
+  font-weight: 700;
+}
+.exec-total span:last-child { color: var(--red); font-family: 'Shippori Mincho', serif; font-size: 1.1rem; }
+
+.menu-note {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.35);
+}
+.menu-note a { color: var(--red); text-decoration: none; }
+
+/* ── GALLERY ── */
+.gallery-section {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 240px 240px;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.gallery-item {
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(200,0,43,0.06);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  position: relative;
+  transition: transform 0.4s;
+}
+.gallery-item:hover { transform: scale(0.98); }
+.gallery-item:first-child { grid-row: span 2; font-size: 8rem; }
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(200,0,43,0.08), transparent 60%);
+}
+
+/* ── COMBOS ── */
+.combos-section { background: var(--black); }
+.combos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.combo-card {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  background: var(--deep);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.combo-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--red);
+}
+.combo-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--red);
+}
+.combo-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.combo-pieces {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.combo-emoji { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
+.combo-price-wrap { margin: 1.5rem 0; }
+.combo-price-new {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gold);
+  display: block;
+}
+.combo-price-old {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.combo-discount {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-top: 0.5rem;
+}
+.combo-cta {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  background: none;
+  border: 1px solid rgba(200,0,43,0.4);
+  color: var(--red);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.combo-cta:hover {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+
+/* ── HORARIO & CONTACTO ── */
+.info-section {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
+.info-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+}
+.info-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.info-card h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.55rem 0;
+  font-size: 0.88rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.info-row:last-child { border-bottom: none; }
+.info-row-label { color: rgba(255,255,255,0.45); }
+.info-row-val { color: rgba(255,255,255,0.85); text-align: right; }
+.info-row-val.open { color: #4caf7d; font-weight: 600; }
+
+.contact-links { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; }
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-size: 0.88rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+.contact-link:hover { color: #fff; border-color: var(--red); background: rgba(200,0,43,0.05); }
+.contact-link .cl-icon { font-size: 1.2rem; }
+
+/* WhatsApp special */
+.wa-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #25d366;
+  color: #fff;
+  padding: 0.9rem 1.2rem;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  border: none;
+}
+.wa-btn:hover { background: #1fb556; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.25); }
+
+/* ── REVIEWS ── */
+.reviews-section { background: var(--black); }
+.reviews-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.rating-big {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--gold);
+}
+.rating-info { flex: 1; }
+.stars { font-size: 1.3rem; margin-bottom: 0.3rem; }
+.rating-info p { font-size: 0.85rem; color: var(--muted); }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.review-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  position: relative;
+}
+.review-stars { font-size: 0.85rem; margin-bottom: 0.8rem; }
+.review-text {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.review-avatar {
+  width: 36px; height: 36px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.review-name { font-size: 0.85rem; font-weight: 600; }
+.review-source { font-size: 0.72rem; color: var(--muted); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  padding: 4rem 3rem 2rem;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-brand h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.footer-brand h2 span { color: var(--red); }
+.footer-brand p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.8;
+  max-width: 280px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-col h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li {
+  margin-bottom: 0.7rem;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.25);
+}
+.footer-bottom a { color: var(--red); text-decoration: none; }
+
+/* Social icons */
+.social-links { display: flex; gap: 0.7rem; }
+.social-link {
+  width: 38px; height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+.social-link:hover { border-color: var(--red); background: rgba(200,0,43,0.1); }
+
+/* ── FLOATING WA BUTTON ── */
+.float-wa {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 200;
+  width: 60px; height: 60px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.8rem;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.35);
+  animation: pulse-wa 2.5s infinite;
+  transition: transform 0.3s;
+}
+.float-wa:hover { transform: scale(1.1); }
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 8px 30px rgba(37,211,102,0.35); }
+  50% { box-shadow: 0 8px 50px rgba(37,211,102,0.55); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 5rem 1.5rem; }
+  .hero { padding: 0 1.5rem; }
+  .hero-stats { display: none; }
+  .about { grid-template-columns: 1fr; gap: 3rem; }
+  .about-visual { display: none; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gallery-item:first-child { grid-row: span 1; }
+  .combos-grid { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .exec-grid { grid-template-columns: 1fr; }
+}
+
+/* Tab visibility */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+```
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+    <div class="nav-logo">Osaka<span>.</span>Sushi</div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#combos">Combos</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="https://wa.me/595992749480" target="_blank" class="nav-cta">Pedir ahora</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <svg class="hero-pattern" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="wave" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+          <path d="M0 20 Q15 5, 30 20 T60 20" stroke="white" stroke-width="1.5" fill="none"/>
+          <path d="M0 30 Q15 15, 30 30 T60 30" stroke="white" stroke-width="1" fill="none"/>
+        </pattern>
+      </defs>
+      <rect width="300" height="300" fill="url(#wave)"/>
+    </svg>
+
+```
+<div class="hero-content">
+  <div class="hero-tag">Restaurante japonés • Asunción, Paraguay</div>
+  <h1>
+    El sabor<br>
+    <span class="line-red">auténtico</span><br>
+    del Japón<span class="kanji">大阪</span>
+  </h1>
+  <p>
+    Sushi artesanal preparado con los ingredientes más frescos. 
+    Delivery, pick up y salón disponible. 
+    Viví la experiencia japonesa en el corazón de Asunción.
+  </p>
+  <div class="hero-actions">
+    <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20hacer%20un%20pedido%20🍣" target="_blank" class="btn-primary">
+      🍣 Hacer un pedido
+    </a>
+    <a href="#menu" class="btn-outline">Ver el menú</a>
+  </div>
+</div>
+
+<div class="hero-stats">
+  <div class="stat-item">
+    <span class="stat-num">3.9★</span>
+    <span class="stat-label">Google Maps</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">188</span>
+    <span class="stat-label">Reseñas</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">45K</span>
+    <span class="stat-label">Seguidores</span>
+  </div>
+</div>
+
+<div class="scroll-hint">Scroll</div>
+```
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about" id="nosotros">
+    <div class="about-text">
+      <div class="section-tag">Nuestra historia</div>
+      <h2 class="section-title">Osaka Sushi<br>— más que sushi</h2>
+      <p>
+        Somos un restaurante japonés comprometido con traer el auténtico sabor del Japón a Asunción. 
+        Cada pieza de sushi es una obra de arte hecha con pasión, técnica y los mejores ingredientes frescos.
+      </p>
+      <p>
+        Contamos con salón propio, servicio de delivery y pick up para que disfrutes de nuestros platos 
+        donde prefieras. Desde clásicos como el Philadelphia y California hasta creaciones únicas 
+        como la Geisha de Salmón.
+      </p>
+
+```
+  <div class="about-features">
+    <div class="feature-card">
+      <div class="feature-icon">🍱</div>
+      <h4>Menú ejecutivo</h4>
+      <p>Lunes a viernes, 11:00–14:00 hs</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛵</div>
+      <h4>Delivery & Pick up</h4>
+      <p>Pedís por WhatsApp y te llega fresco</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏮</div>
+      <h4>Salón propio</h4>
+      <p>Ambiente japonés en Cruz del Chaco</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎌</div>
+      <h4>Técnica japonesa</h4>
+      <p>Rolls artesanales con ingredientes frescos</p>
+    </div>
+  </div>
+</div>
+
+<div class="about-visual">
+  <div class="about-img-frame">
+    <span class="sushi-art">🍣</span>
+  </div>
+  <div class="about-badge">
+    <strong>45K</strong>
+    fans en<br>Instagram
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- MENÚ -->
+
+  <section class="menu-section" id="menu">
+    <div class="menu-header">
+      <div>
+        <div class="section-tag">Carta</div>
+        <h2 class="section-title">Nuestro Menú</h2>
+      </div>
+      <div class="menu-tabs">
+        <button class="tab-btn active" onclick="switchTab('rolls')">Rolls</button>
+        <button class="tab-btn" onclick="switchTab('ejecutivo')">Menú Ejecutivo</button>
+        <button class="tab-btn" onclick="switchTab('wok')">Wok & más</button>
+      </div>
+    </div>
+
+```
+<!-- ROLLS -->
+<div id="tab-rolls" class="tab-content active">
+  <div class="menu-grid">
+    <div class="menu-card">
+      <span class="menu-card-img">🍣</span>
+      <div class="menu-card-body">
+        <h3>Philadelphia Roll</h3>
+        <p>Salmón, queso crema y pepino. Un clásico que nunca falla.</p>
+        <div class="menu-card-footer">
+          <span class="price">A consultar</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🌊</span>
+      <div class="menu-card-body">
+        <h3>California Roll</h3>
+        <p>Surimi, palta y pepino en una combinación perfectamente equilibrada.</p>
+        <div class="menu-card-footer">
+          <span class="price">A consultar</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🦐</span>
+      <div class="menu-card-body">
+        <h3>Ebi Roll</h3>
+        <p>Camarón rebozado, palta y salsa especial de la casa.</p>
+        <div class="menu-card-footer">
+          <span class="price">A consultar</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🐟</span>
+      <div class="menu-card-body">
+        <h3>Nikkei Roll</h3>
+        <p>Fusión nikkei con sabores únicos que sorprenden en cada bocado.</p>
+        <div class="menu-card-footer">
+          <span class="price">A consultar</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🌹</span>
+      <div class="menu-card-body">
+        <h3>Geisha de Salmón</h3>
+        <p>Nuestra estrella. Salmón premium presentado de forma espectacular.</p>
+        <div class="menu-card-footer">
+          <span class="price">A consultar</span>
+          <span class="tag-promo">⭐ Especial</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🎯</span>
+      <div class="menu-card-body">
+        <h3>Buenos Aires Roll</h3>
+        <p>Creación exclusiva con toques argentinos y técnica japonesa.</p>
+        <div class="menu-card-footer">
+          <span class="price">A consultar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EJECUTIVO -->
+<div id="tab-ejecutivo" class="tab-content">
+  <div class="exec-grid">
+    <div class="exec-category">
+      <div class="exec-cat-header">🍜 Pokes</div>
+      <div class="exec-items">
+        <div class="exec-item">
+          <span class="exec-item-name">Poke Sake</span>
+          <span class="exec-item-price">30.000 Gs</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Poke Fried</span>
+          <span class="exec-item-price">35.000 Gs</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Poke Nara</span>
+          <span class="exec-item-price">35.000 Gs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exec-category">
+      <div class="exec-cat-header">🥘 Wok</div>
+      <div class="exec-items">
+        <div class="exec-item">
+          <span class="exec-item-name">Arroz frito carne o pollo</span>
+          <span class="exec-item-price">30.000 Gs</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Arroz frito camarón</span>
+          <span class="exec-item-price">40.000 Gs</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Grille de tilapia con arroz frito</span>
+          <span class="exec-item-price">40.000 Gs</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Yakisoba de pollo o carne</span>
+          <span class="exec-item-price">30.000 Gs</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Yakisoba de camarón</span>
+          <span class="exec-item-price">40.000 Gs</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Lomo salteado</span>
+          <span class="exec-item-price">45.000 Gs</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Ojo de bife con arroz con queso</span>
+          <span class="exec-item-price">50.000 Gs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exec-category">
+      <div class="exec-cat-header">🍱 Menú ejecutivo clásico — 20 piezas</div>
+      <div class="exec-items">
+        <div class="exec-item">
+          <span class="exec-item-name">Philadelphia 5 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">New Philadelphia 5 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">California 5 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Ebi Roll 5 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+      </div>
+      <div class="exec-total">
+        <span>Total combo clásico</span>
+        <span>40.000 Gs</span>
+      </div>
+    </div>
+
+    <div class="exec-category">
+      <div class="exec-cat-header">⭐ Menú ejecutivo premium — 20 piezas</div>
+      <div class="exec-items">
+        <div class="exec-item">
+          <span class="exec-item-name">Nikkei 5 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Buenos Aires 5 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Tamago Nara 5 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Nihiri Salmón 3 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+        <div class="exec-item">
+          <span class="exec-item-name">Geisha de Salmón 2 piezas</span>
+          <span class="exec-item-price">—</span>
+        </div>
+      </div>
+      <div class="exec-total">
+        <span>Total combo premium</span>
+        <span>45.000 Gs</span>
+      </div>
+      <div class="exec-note">⏰ Horario ejecutivo: lunes a viernes 11:00 a 14:00 hs</div>
+    </div>
+  </div>
+</div>
+
+<!-- WOK -->
+<div id="tab-wok" class="tab-content">
+  <div class="menu-grid">
+    <div class="menu-card">
+      <span class="menu-card-img">🍚</span>
+      <div class="menu-card-body">
+        <h3>Arroz Frito con Carne o Pollo</h3>
+        <p>Arroz salteado al wok con carne o pollo, vegetales y salsas orientales.</p>
+        <div class="menu-card-footer">
+          <span class="price">30.000 Gs</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🦐</span>
+      <div class="menu-card-body">
+        <h3>Arroz Frito Camarón</h3>
+        <p>Camarones salteados con arroz al wok y salsa especial de la casa.</p>
+        <div class="menu-card-footer">
+          <span class="price">40.000 Gs</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🐟</span>
+      <div class="menu-card-body">
+        <h3>Grille de Tilapia</h3>
+        <p>Tilapia a la plancha con arroz frito de acompañamiento.</p>
+        <div class="menu-card-footer">
+          <span class="price">40.000 Gs</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🍜</span>
+      <div class="menu-card-body">
+        <h3>Yakisoba de Pollo o Carne</h3>
+        <p>Fideos japoneses salteados con vegetales y proteína al gusto.</p>
+        <div class="menu-card-footer">
+          <span class="price">30.000 Gs</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🥩</span>
+      <div class="menu-card-body">
+        <h3>Lomo Salteado</h3>
+        <p>Tierna carne salteada con vegetales y salsa japonesa especial.</p>
+        <div class="menu-card-footer">
+          <span class="price">45.000 Gs</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <span class="menu-card-img">🥩</span>
+      <div class="menu-card-body">
+        <h3>Ojo de Bife con Arroz con Queso</h3>
+        <p>Corte premium con arroz gratinado, la fusión más sabrosa del menú.</p>
+        <div class="menu-card-footer">
+          <span class="price">50.000 Gs</span>
+          <span class="tag-promo">Premium</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="menu-note">¿Querés ver el menú completo o consultar precios? <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20ver%20el%20menú%20completo%20🍣" target="_blank">Consultanos por WhatsApp →</a></p>
+```
+
+  </section>
+
+  <!-- GALERÍA -->
+
+  <section class="gallery-section" id="galeria">
+    <div class="section-tag">Galería</div>
+    <h2 class="section-title">Cada plato,<br>una experiencia</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">🍣</div>
+      <div class="gallery-item">🌊</div>
+      <div class="gallery-item">🦐</div>
+      <div class="gallery-item">🌹</div>
+      <div class="gallery-item">🍱</div>
+    </div>
+  </section>
+
+  <!-- COMBOS -->
+
+  <section class="combos-section" id="combos">
+    <div class="section-tag">Ofertas</div>
+    <h2 class="section-title">Combos con<br>hasta 25% OFF</h2>
+    <div class="combos-grid">
+      <div class="combo-card">
+        <span class="combo-emoji">🍣</span>
+        <div class="combo-name">Combo Nara</div>
+        <div class="combo-pieces">25 piezas seleccionadas</div>
+        <div class="combo-price-wrap">
+          <span class="combo-price-new">60.000 Gs</span>
+          <span class="combo-price-old">80.000 Gs</span>
+          <span class="combo-discount">25% OFF</span>
+        </div>
+        <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20pedir%20el%20Combo%20Nara%20🍣" target="_blank" class="combo-cta">Pedir ahora</a>
+      </div>
+      <div class="combo-card">
+        <span class="combo-emoji">🌟</span>
+        <div class="combo-name">Combo Tokyo</div>
+        <div class="combo-pieces">25 piezas premium</div>
+        <div class="combo-price-wrap">
+          <span class="combo-price-new">58.000 Gs</span>
+          <span class="combo-price-old">68.000 Gs</span>
+          <span class="combo-discount">15% OFF</span>
+        </div>
+        <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20pedir%20el%20Combo%20Tokyo%20🍣" target="_blank" class="combo-cta">Pedir ahora</a>
+      </div>
+      <div class="combo-card">
+        <span class="combo-emoji">🎯</span>
+        <div class="combo-name">Combo Saporo</div>
+        <div class="combo-pieces">25 piezas exclusivas</div>
+        <div class="combo-price-wrap">
+          <span class="combo-price-new">67.000 Gs</span>
+          <span class="combo-price-old">78.000 Gs</span>
+          <span class="combo-discount">15% OFF</span>
+        </div>
+        <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20pedir%20el%20Combo%20Saporo%20🍣" target="_blank" class="combo-cta">Pedir ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO & CONTACTO -->
+
+  <section class="info-section" id="contacto">
+    <div class="section-tag">Encontranos</div>
+    <h2 class="section-title" style="margin-bottom:3rem">Horarios &<br>Contacto</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">🕐</div>
+        <h3>Horarios</h3>
+        <div class="info-row">
+          <span class="info-row-label">Domingo – Miércoles</span>
+          <span class="info-row-val">18:00 – 23:00</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Jueves – Sábado</span>
+          <span class="info-row-val">18:00 – 00:00</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Menú ejecutivo (lun–vie)</span>
+          <span class="info-row-val">11:00 – 14:00</span>
+        </div>
+        <div class="info-row" style="margin-top:0.5rem; padding-top:0.8rem; border-top: 1px solid var(--border);">
+          <span class="info-row-label">Estado actual</span>
+          <span class="info-row-val open">🟢 Abierto</span>
+        </div>
+      </div>
+
+```
+  <div class="info-card">
+    <div class="info-card-icon">📍</div>
+    <h3>Ubicación</h3>
+    <div class="info-row">
+      <span class="info-row-label">Dirección</span>
+      <span class="info-row-val">Cruz del Chaco 272 esq. Quesada</span>
+    </div>
+    <div class="info-row">
+      <span class="info-row-label">Ciudad</span>
+      <span class="info-row-val">Asunción, Paraguay</span>
+    </div>
+    <div class="info-row">
+      <span class="info-row-label">Local</span>
+      <span class="info-row-val">Good Vibes</span>
+    </div>
+    <a href="https://maps.google.com/?q=Cruz+del+Chaco+272+Asuncion+Paraguay" target="_blank" class="btn-outline" style="margin-top:1.5rem; font-size:0.82rem; padding:0.65rem 1rem;">
+      📍 Ver en Google Maps
+    </a>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-icon">💬</div>
+    <h3>Contacto</h3>
+    <div class="contact-links">
+      <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20hacer%20un%20pedido%20🍣" target="_blank" class="wa-btn">
+        <span>💬</span> WhatsApp — Pedir ahora
+      </a>
+      <a href="tel:+595992749480" class="contact-link">
+        <span class="cl-icon">📞</span> 0992 749480
+      </a>
+      <a href="https://instagram.com/osakasushipy" target="_blank" class="contact-link">
+        <span class="cl-icon">📸</span> @osakasushipy
+      </a>
+      <a href="https://pedidosya.com.py" target="_blank" class="contact-link">
+        <span class="cl-icon">🛵</span> PedidosYa
+      </a>
+    </div>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- RESEÑAS -->
+
+  <section class="reviews-section">
+    <div class="section-tag">Opiniones</div>
+    <div class="reviews-header">
+      <div class="rating-big">3.9</div>
+      <div class="rating-info">
+        <div class="stars">⭐⭐⭐⭐</div>
+        <p>Basado en 188 reseñas de Google Maps</p>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"El mejor sushi de Asunción sin dudas. Los rolls son fresquísimos y el ambiente es súper agradable. ¡Ya voy a repetir!"</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">María G.</div>
+            <div class="review-source">Google Maps</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"El combo Nara es increíble por el precio que tiene. 25 piezas de calidad y el servicio siempre muy atento. 100% recomendado."</p>
+        <div class="review-author">
+          <div class="review-avatar">R</div>
+          <div>
+            <div class="review-name">Rodrigo M.</div>
+            <div class="review-source">Google Maps</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">⭐⭐⭐⭐</div>
+        <p class="review-text">"La Geisha de Salmón es una obra de arte. La presentación es espectacular y el sabor no defrauda. El delivery llegó rápido y caliente."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Andrea L.</div>
+            <div class="review-source">Google Maps</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2>Osaka<span>.</span>Sushi</h2>
+        <p>Restaurante japonés en Asunción, Paraguay. Rolls artesanales, combos imperdibles y la mejor experiencia gastronómica japonesa.</p>
+        <div class="social-links">
+          <a href="https://instagram.com/osakasushipy" target="_blank" class="social-link">📸</a>
+          <a href="https://wa.me/595992749480" target="_blank" class="social-link">💬</a>
+          <a href="https://pedidosya.com.py" target="_blank" class="social-link">🛵</a>
+        </div>
+      </div>
+
+```
+  <div class="footer-col">
+    <h4>Menú</h4>
+    <ul>
+      <li>Rolls clásicos</li>
+      <li>Rolls premium</li>
+      <li>Menú ejecutivo</li>
+      <li>Combos</li>
+      <li>Wok & Pokes</li>
+    </ul>
+  </div>
+
+  <div class="footer-col">
+    <h4>Información</h4>
+    <ul>
+      <li>Cruz del Chaco 272, Asunción</li>
+      <li>📞 0992 749480</li>
+      <li>Dom–Mié: 18:00–23:00</li>
+      <li>Jue–Sáb: 18:00–00:00</li>
+      <li>Ejecutivo: Lun–Vie 11–14 hs</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer-bottom">
+  <span>© 2025 Osaka Sushi. Todos los derechos reservados.</span>
+  <span>Hecho con 🍣 en Asunción, Paraguay</span>
+</div>
+```
+
+  </footer>
+
+  <!-- FLOATING WA -->
+
+<a href="https://wa.me/595992749480?text=Hola!%20Quiero%20hacer%20un%20pedido%20🍣" target="_blank" class="float-wa" title="Pedir por WhatsApp">💬</a>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.menu-card, .combo-card, .review-card, .info-card, .feature-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
