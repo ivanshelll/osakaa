@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -669,7 +668,7 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 240px 240px;
+      grid-template-rows: 380px 380px;
       gap: 1rem;
       margin-top: 2.5rem;
     }
@@ -684,6 +683,7 @@
       font-size: 5rem;
       position: relative;
       transition: transform 0.4s;
+      cursor: pointer;
     }
     .gallery-item:hover { transform: scale(0.98); }
     .gallery-item:first-child { grid-row: span 2; font-size: 8rem; }
@@ -692,7 +692,41 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg, rgba(200,0,43,0.08), transparent 60%);
+      pointer-events: none;
     }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.95); z-index: 9000;
+      align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 80px rgba(0,0,0,0.8); }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--red); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
+    .lightbox-nav { display: flex; gap: 1rem; }
+    .lightbox-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.6rem 1.4rem; border-radius: 3px; cursor: pointer; font-size: 1.2rem; transition: background 0.2s; }
+    .lightbox-btn:hover { background: var(--red); border-color: var(--red); }
+    .gallery-extra { display: none; }
+    .gallery-extra.visible { display: contents; }
+    .gallery-show-more { margin-top: 1.5rem; text-align: center; }
+    .gallery-show-more button { background: none; border: 1px solid rgba(200,0,43,0.4); color: var(--red); padding: 0.7rem 2rem; font-family: 'Outfit', sans-serif; font-size: 0.88rem; font-weight: 600; border-radius: 2px; cursor: pointer; transition: all 0.3s; }
+    .gallery-show-more button:hover { background: var(--red); color: #fff; }
+    .menu-card-img-real { 
+      width: 100%; 
+      height: 220px; 
+      object-fit: cover; 
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      transition: transform 0.4s ease;
+    }
+    .menu-card:hover .menu-card-img-real { transform: scale(1.04); }
 
     /* ── COMBOS ── */
     .combos-section { background: var(--black); }
@@ -1121,26 +1155,24 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
   </style>
-
 </head>
 <body>
 
   <!-- NAV -->
-
   <nav>
-    <div class="nav-logo">Osaka<span>.</span>Sushi</div>
+    <div class="nav-logo">
+      <img src="https://firebrick-gerbil-385835.hostingersite.com/logo%20local/Dise%C3%B1o%20sin%20t%C3%ADtulo.png" alt="Osaka Sushi" style="height:42px;width:auto;display:block;">
+    </div>
     <ul class="nav-links">
       <li><a href="#menu">Menú</a></li>
       <li><a href="#combos">Combos</a></li>
       <li><a href="#pedidos">Pedidos</a></li>
-      <li><a href="#galeria">Galería</a></li>
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="https://wa.me/595992749480" target="_blank" class="nav-cta">Pedir ahora</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
-
   <section class="hero" id="inicio">
     <div class="hero-bg"></div>
     <svg class="hero-pattern" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1183,7 +1215,6 @@
   </section>
 
   <!-- ABOUT -->
-
   <section class="about" id="nosotros">
     <div class="about-text">
       <div class="section-tag">Nuestra historia</div>
@@ -1225,7 +1256,6 @@
   </section>
 
   <!-- MENÚ -->
-
   <section class="menu-section" id="menu">
     <div class="menu-header">
       <div>
@@ -1239,176 +1269,172 @@
       </div>
     </div>
 
-```
-<!-- ROLLS -->
-<div id="tab-rolls" class="tab-content active">
-  <div class="menu-grid">
-    <div class="menu-card">
-      <span class="menu-card-img">🍣</span>
-      <div class="menu-card-body">
-        <h3>Philadelphia Roll</h3>
-        <p>Salmón, queso crema y pepino. Un clásico que nunca falla.</p>
-        <div class="menu-card-footer"><span class="price">A consultar</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🌊</span>
-      <div class="menu-card-body">
-        <h3>California Roll</h3>
-        <p>Surimi, palta y pepino en una combinación perfectamente equilibrada.</p>
-        <div class="menu-card-footer"><span class="price">A consultar</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🦐</span>
-      <div class="menu-card-body">
-        <h3>Ebi Roll</h3>
-        <p>Camarón rebozado, palta y salsa especial de la casa.</p>
-        <div class="menu-card-footer"><span class="price">A consultar</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🐟</span>
-      <div class="menu-card-body">
-        <h3>Nikkei Roll</h3>
-        <p>Fusión nikkei con sabores únicos que sorprenden en cada bocado.</p>
-        <div class="menu-card-footer"><span class="price">A consultar</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🌹</span>
-      <div class="menu-card-body">
-        <h3>Geisha de Salmón</h3>
-        <p>Nuestra estrella. Salmón premium presentado de forma espectacular.</p>
-        <div class="menu-card-footer">
-          <span class="price">A consultar</span>
-          <span class="tag-promo">⭐ Especial</span>
+    <!-- ROLLS -->
+    <div id="tab-rolls" class="tab-content active">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/08bd0bcb-ae7e-4674-876d-a080441c0462.JPG" alt="Philadelphia Roll" loading="lazy">
+          <div class="menu-card-body">
+            <h3>Philadelphia Roll</h3>
+            <p>Salmón, queso crema y pepino. Un clásico que nunca falla.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/09050e2d-616e-4554-b7db-e216cbcb828b.JPG" alt="California Roll" loading="lazy">
+          <div class="menu-card-body">
+            <h3>California Roll</h3>
+            <p>Surimi, palta y pepino en una combinación perfectamente equilibrada.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/126de00e-71c1-4ace-bc1f-f3ac8c50cc80.JPG" alt="Ebi Roll" loading="lazy">
+          <div class="menu-card-body">
+            <h3>Ebi Roll</h3>
+            <p>Camarón rebozado, palta y salsa especial de la casa.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/1708a2e3-ee1a-4d09-a5cb-9602059f4e23.JPG" alt="Nikkei Roll" loading="lazy">
+          <div class="menu-card-body">
+            <h3>Nikkei Roll</h3>
+            <p>Fusión nikkei con sabores únicos que sorprenden en cada bocado.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/1b4fdb99-f1f4-42c6-accf-63b1547effc1.JPG" alt="Geisha de Salmón" loading="lazy">
+          <div class="menu-card-body">
+            <h3>Geisha de Salmón</h3>
+            <p>Nuestra estrella. Salmón premium presentado de forma espectacular.</p>
+            <div class="menu-card-footer">
+              <span class="price">A consultar</span>
+              <span class="tag-promo">⭐ Especial</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/24b81096-a1ad-4524-82d8-4ec436728924.JPG" alt="Buenos Aires Roll" loading="lazy">
+          <div class="menu-card-body">
+            <h3>Buenos Aires Roll</h3>
+            <p>Creación exclusiva con toques argentinos y técnica japonesa.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🎯</span>
-      <div class="menu-card-body">
-        <h3>Buenos Aires Roll</h3>
-        <p>Creación exclusiva con toques argentinos y técnica japonesa.</p>
-        <div class="menu-card-footer"><span class="price">A consultar</span></div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- EJECUTIVO -->
-<div id="tab-ejecutivo" class="tab-content">
-  <div class="exec-grid">
-    <div class="exec-category">
-      <div class="exec-cat-header">🍜 Pokes</div>
-      <div class="exec-items">
-        <div class="exec-item"><span class="exec-item-name">Poke Sake</span><span class="exec-item-price">30.000 Gs</span></div>
-        <div class="exec-item"><span class="exec-item-name">Poke Fried</span><span class="exec-item-price">35.000 Gs</span></div>
-        <div class="exec-item"><span class="exec-item-name">Poke Nara</span><span class="exec-item-price">35.000 Gs</span></div>
-      </div>
-    </div>
-    <div class="exec-category">
-      <div class="exec-cat-header">🥘 Wok</div>
-      <div class="exec-items">
-        <div class="exec-item"><span class="exec-item-name">Arroz frito carne o pollo</span><span class="exec-item-price">30.000 Gs</span></div>
-        <div class="exec-item"><span class="exec-item-name">Arroz frito camarón</span><span class="exec-item-price">40.000 Gs</span></div>
-        <div class="exec-item"><span class="exec-item-name">Grille de tilapia con arroz frito</span><span class="exec-item-price">40.000 Gs</span></div>
-        <div class="exec-item"><span class="exec-item-name">Yakisoba de pollo o carne</span><span class="exec-item-price">30.000 Gs</span></div>
-        <div class="exec-item"><span class="exec-item-name">Yakisoba de camarón</span><span class="exec-item-price">40.000 Gs</span></div>
-        <div class="exec-item"><span class="exec-item-name">Lomo salteado</span><span class="exec-item-price">45.000 Gs</span></div>
-        <div class="exec-item"><span class="exec-item-name">Ojo de bife con arroz con queso</span><span class="exec-item-price">50.000 Gs</span></div>
-      </div>
-    </div>
-    <div class="exec-category">
-      <div class="exec-cat-header">🍱 Menú ejecutivo clásico — 20 piezas</div>
-      <div class="exec-items">
-        <div class="exec-item"><span class="exec-item-name">Philadelphia 5 piezas</span><span class="exec-item-price">—</span></div>
-        <div class="exec-item"><span class="exec-item-name">New Philadelphia 5 piezas</span><span class="exec-item-price">—</span></div>
-        <div class="exec-item"><span class="exec-item-name">California 5 piezas</span><span class="exec-item-price">—</span></div>
-        <div class="exec-item"><span class="exec-item-name">Ebi Roll 5 piezas</span><span class="exec-item-price">—</span></div>
-      </div>
-      <div class="exec-total"><span>Total combo clásico</span><span>40.000 Gs</span></div>
-    </div>
-    <div class="exec-category">
-      <div class="exec-cat-header">⭐ Menú ejecutivo premium — 20 piezas</div>
-      <div class="exec-items">
-        <div class="exec-item"><span class="exec-item-name">Nikkei 5 piezas</span><span class="exec-item-price">—</span></div>
-        <div class="exec-item"><span class="exec-item-name">Buenos Aires 5 piezas</span><span class="exec-item-price">—</span></div>
-        <div class="exec-item"><span class="exec-item-name">Tamago Nara 5 piezas</span><span class="exec-item-price">—</span></div>
-        <div class="exec-item"><span class="exec-item-name">Nihiri Salmón 3 piezas</span><span class="exec-item-price">—</span></div>
-        <div class="exec-item"><span class="exec-item-name">Geisha de Salmón 2 piezas</span><span class="exec-item-price">—</span></div>
-      </div>
-      <div class="exec-total"><span>Total combo premium</span><span>45.000 Gs</span></div>
-      <div class="exec-note">⏰ Horario ejecutivo: lunes a viernes 11:00 a 14:00 hs</div>
-    </div>
-  </div>
-</div>
-
-<!-- WOK -->
-<div id="tab-wok" class="tab-content">
-  <div class="menu-grid">
-    <div class="menu-card">
-      <span class="menu-card-img">🍚</span>
-      <div class="menu-card-body">
-        <h3>Arroz Frito con Carne o Pollo</h3>
-        <p>Arroz salteado al wok con carne o pollo, vegetales y salsas orientales.</p>
-        <div class="menu-card-footer"><span class="price">30.000 Gs</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🦐</span>
-      <div class="menu-card-body">
-        <h3>Arroz Frito Camarón</h3>
-        <p>Camarones salteados con arroz al wok y salsa especial de la casa.</p>
-        <div class="menu-card-footer"><span class="price">40.000 Gs</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🐟</span>
-      <div class="menu-card-body">
-        <h3>Grille de Tilapia</h3>
-        <p>Tilapia a la plancha con arroz frito de acompañamiento.</p>
-        <div class="menu-card-footer"><span class="price">40.000 Gs</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🍜</span>
-      <div class="menu-card-body">
-        <h3>Yakisoba de Pollo o Carne</h3>
-        <p>Fideos japoneses salteados con vegetales y proteína al gusto.</p>
-        <div class="menu-card-footer"><span class="price">30.000 Gs</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🥩</span>
-      <div class="menu-card-body">
-        <h3>Lomo Salteado</h3>
-        <p>Tierna carne salteada con vegetales y salsa japonesa especial.</p>
-        <div class="menu-card-footer"><span class="price">45.000 Gs</span></div>
-      </div>
-    </div>
-    <div class="menu-card">
-      <span class="menu-card-img">🥩</span>
-      <div class="menu-card-body">
-        <h3>Ojo de Bife con Arroz con Queso</h3>
-        <p>Corte premium con arroz gratinado, la fusión más sabrosa del menú.</p>
-        <div class="menu-card-footer">
-          <span class="price">50.000 Gs</span>
-          <span class="tag-promo">Premium</span>
+    <!-- EJECUTIVO -->
+    <div id="tab-ejecutivo" class="tab-content">
+      <div class="exec-grid">
+        <div class="exec-category">
+          <div class="exec-cat-header">🍜 Pokes</div>
+          <div class="exec-items">
+            <div class="exec-item"><span class="exec-item-name">Poke Sake</span><span class="exec-item-price">30.000 Gs</span></div>
+            <div class="exec-item"><span class="exec-item-name">Poke Fried</span><span class="exec-item-price">35.000 Gs</span></div>
+            <div class="exec-item"><span class="exec-item-name">Poke Nara</span><span class="exec-item-price">35.000 Gs</span></div>
+          </div>
+        </div>
+        <div class="exec-category">
+          <div class="exec-cat-header">🥘 Wok</div>
+          <div class="exec-items">
+            <div class="exec-item"><span class="exec-item-name">Arroz frito carne o pollo</span><span class="exec-item-price">30.000 Gs</span></div>
+            <div class="exec-item"><span class="exec-item-name">Arroz frito camarón</span><span class="exec-item-price">40.000 Gs</span></div>
+            <div class="exec-item"><span class="exec-item-name">Grille de tilapia con arroz frito</span><span class="exec-item-price">40.000 Gs</span></div>
+            <div class="exec-item"><span class="exec-item-name">Yakisoba de pollo o carne</span><span class="exec-item-price">30.000 Gs</span></div>
+            <div class="exec-item"><span class="exec-item-name">Yakisoba de camarón</span><span class="exec-item-price">40.000 Gs</span></div>
+            <div class="exec-item"><span class="exec-item-name">Lomo salteado</span><span class="exec-item-price">45.000 Gs</span></div>
+            <div class="exec-item"><span class="exec-item-name">Ojo de bife con arroz con queso</span><span class="exec-item-price">50.000 Gs</span></div>
+          </div>
+        </div>
+        <div class="exec-category">
+          <div class="exec-cat-header">🍱 Menú ejecutivo clásico — 20 piezas</div>
+          <div class="exec-items">
+            <div class="exec-item"><span class="exec-item-name">Philadelphia 5 piezas</span><span class="exec-item-price">—</span></div>
+            <div class="exec-item"><span class="exec-item-name">New Philadelphia 5 piezas</span><span class="exec-item-price">—</span></div>
+            <div class="exec-item"><span class="exec-item-name">California 5 piezas</span><span class="exec-item-price">—</span></div>
+            <div class="exec-item"><span class="exec-item-name">Ebi Roll 5 piezas</span><span class="exec-item-price">—</span></div>
+          </div>
+          <div class="exec-total"><span>Total combo clásico</span><span>40.000 Gs</span></div>
+        </div>
+        <div class="exec-category">
+          <div class="exec-cat-header">⭐ Menú ejecutivo premium — 20 piezas</div>
+          <div class="exec-items">
+            <div class="exec-item"><span class="exec-item-name">Nikkei 5 piezas</span><span class="exec-item-price">—</span></div>
+            <div class="exec-item"><span class="exec-item-name">Buenos Aires 5 piezas</span><span class="exec-item-price">—</span></div>
+            <div class="exec-item"><span class="exec-item-name">Tamago Nara 5 piezas</span><span class="exec-item-price">—</span></div>
+            <div class="exec-item"><span class="exec-item-name">Nihiri Salmón 3 piezas</span><span class="exec-item-price">—</span></div>
+            <div class="exec-item"><span class="exec-item-name">Geisha de Salmón 2 piezas</span><span class="exec-item-price">—</span></div>
+          </div>
+          <div class="exec-total"><span>Total combo premium</span><span>45.000 Gs</span></div>
+          <div class="exec-note">⏰ Horario ejecutivo: lunes a viernes 11:00 a 14:00 hs</div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<p class="menu-note">¿Querés ver el menú completo o consultar precios? <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20ver%20el%20menú%20completo%20🍣" target="_blank">Consultanos por WhatsApp →</a></p>
-```
+    <!-- WOK -->
+    <div id="tab-wok" class="tab-content">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <span class="menu-card-img">🍚</span>
+          <div class="menu-card-body">
+            <h3>Arroz Frito con Carne o Pollo</h3>
+            <p>Arroz salteado al wok con carne o pollo, vegetales y salsas orientales.</p>
+            <div class="menu-card-footer"><span class="price">30.000 Gs</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <span class="menu-card-img">🦐</span>
+          <div class="menu-card-body">
+            <h3>Arroz Frito Camarón</h3>
+            <p>Camarones salteados con arroz al wok y salsa especial de la casa.</p>
+            <div class="menu-card-footer"><span class="price">40.000 Gs</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <span class="menu-card-img">🐟</span>
+          <div class="menu-card-body">
+            <h3>Grille de Tilapia</h3>
+            <p>Tilapia a la plancha con arroz frito de acompañamiento.</p>
+            <div class="menu-card-footer"><span class="price">40.000 Gs</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <span class="menu-card-img">🍜</span>
+          <div class="menu-card-body">
+            <h3>Yakisoba de Pollo o Carne</h3>
+            <p>Fideos japoneses salteados con vegetales y proteína al gusto.</p>
+            <div class="menu-card-footer"><span class="price">30.000 Gs</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <span class="menu-card-img">🥩</span>
+          <div class="menu-card-body">
+            <h3>Lomo Salteado</h3>
+            <p>Tierna carne salteada con vegetales y salsa japonesa especial.</p>
+            <div class="menu-card-footer"><span class="price">45.000 Gs</span></div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <span class="menu-card-img">🥩</span>
+          <div class="menu-card-body">
+            <h3>Ojo de Bife con Arroz con Queso</h3>
+            <p>Corte premium con arroz gratinado, la fusión más sabrosa del menú.</p>
+            <div class="menu-card-footer">
+              <span class="price">50.000 Gs</span>
+              <span class="tag-promo">Premium</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <p class="menu-note">¿Querés ver el menú completo o consultar precios? <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20ver%20el%20menú%20completo%20🍣" target="_blank">Consultanos por WhatsApp →</a></p>
   </section>
 
   <!-- PEDIDOS YA BANNER -->
-
   <section class="pedidosya-section" id="pedidos">
     <div class="pedidosya-banner">
       <div class="pedidosya-left">
@@ -1434,22 +1460,7 @@
     </div>
   </section>
 
-  <!-- GALERÍA -->
-
-  <section class="gallery-section" id="galeria">
-    <div class="section-tag">Galería</div>
-    <h2 class="section-title">Cada plato,<br>una experiencia</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">🍣</div>
-      <div class="gallery-item">🌊</div>
-      <div class="gallery-item">🦐</div>
-      <div class="gallery-item">🌹</div>
-      <div class="gallery-item">🍱</div>
-    </div>
-  </section>
-
   <!-- COMBOS -->
-
   <section class="combos-section" id="combos">
     <div class="section-tag">Ofertas</div>
     <h2 class="section-title">Combos con<br>hasta 25% OFF</h2>
@@ -1491,7 +1502,6 @@
   </section>
 
   <!-- INFO & CONTACTO -->
-
   <section class="info-section" id="contacto">
     <div class="section-tag">Encontranos</div>
     <h2 class="section-title" style="margin-bottom:3rem">Horarios &<br>Contacto</h2>
@@ -1557,7 +1567,6 @@
   </section>
 
   <!-- MAPA INTERACTIVO -->
-
   <section class="map-section" id="ubicacion">
     <div class="section-tag">Cómo llegar</div>
     <h2 class="section-title">Encontranos<br>en Asunción</h2>
@@ -1622,7 +1631,6 @@
   </section>
 
   <!-- RESEÑAS -->
-
   <section class="reviews-section">
     <div class="section-tag">Opiniones</div>
     <div class="reviews-header">
@@ -1670,11 +1678,10 @@
   </section>
 
   <!-- FOOTER -->
-
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <h2>Osaka<span>.</span>Sushi</h2>
+        <img src="https://firebrick-gerbil-385835.hostingersite.com/logo%20local/Dise%C3%B1o%20sin%20t%C3%ADtulo.png" alt="Osaka Sushi" style="height:60px;width:auto;display:block;margin-bottom:1rem;">
         <p>Restaurante japonés en Asunción, Paraguay. Rolls artesanales, combos imperdibles y la mejor experiencia gastronómica japonesa.</p>
         <div class="social-links">
           <a href="https://instagram.com/osakasushipy" target="_blank" class="social-link">📸</a>
@@ -1710,8 +1717,7 @@
   </footer>
 
   <!-- FLOATING WA -->
-
-<a href="https://wa.me/595992749480?text=Hola!%20Quiero%20hacer%20un%20pedido%20🍣" target="_blank" class="float-wa" title="Pedir por WhatsApp">💬</a>
+  <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20hacer%20un%20pedido%20🍣" target="_blank" class="float-wa" title="Pedir por WhatsApp">💬</a>
 
   <script>
     function switchTab(tab) {
@@ -1770,6 +1776,5 @@
     }
     updateOpenStatus();
   </script>
-
 </body>
 </html>
