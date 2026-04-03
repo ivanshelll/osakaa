@@ -30,7 +30,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -41,7 +40,6 @@
       opacity: 0.35;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -86,7 +84,6 @@
     }
     .nav-cta:hover { background: var(--red-glow); color: #fff !important; }
 
-    /* ── HERO ── */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -250,7 +247,6 @@
       50% { transform: translateX(-50%) translateY(6px); }
     }
 
-    /* ── SECTION BASE ── */
     section { padding: 7rem 3rem; }
     .section-tag {
       display: inline-flex;
@@ -277,7 +273,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ── ABOUT ── */
     .about {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -416,6 +411,19 @@
       text-align: center;
       display: block;
     }
+    .menu-card-img-real {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      transition: transform 0.4s ease;
+    }
+    .menu-card:hover .menu-card-img-real { transform: scale(1.04); }
+    .menu-card-img-wrap {
+      overflow: hidden;
+      height: 220px;
+    }
     .menu-card-body { padding: 1.2rem 1.4rem 1.5rem; }
     .menu-card-body h3 {
       font-family: 'Shippori Mincho', serif;
@@ -450,6 +458,8 @@
       padding: 0.2rem 0.6rem;
       border-radius: 2px;
     }
+
+    /* Ejecutivo */
     .exec-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -495,6 +505,29 @@
       font-weight: 700;
     }
     .exec-total span:last-child { color: var(--red); font-family: 'Shippori Mincho', serif; font-size: 1.1rem; }
+
+    /* Galería dentro de ejecutivo */
+    .exec-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .exec-photo-card {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 4/3;
+      position: relative;
+      cursor: pointer;
+    }
+    .exec-photo-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .exec-photo-card:hover img { transform: scale(1.06); }
+
     .menu-note {
       margin-top: 2.5rem;
       text-align: center;
@@ -503,7 +536,7 @@
     }
     .menu-note a { color: var(--red); text-decoration: none; }
 
-    /* ── PEDIDOS YA BANNER ── */
+    /* ── PEDIDOS YA ── */
     .pedidosya-section {
       background: var(--black);
       border-top: 1px solid var(--border);
@@ -697,36 +730,9 @@
     .gallery-item img {
       width: 100%; height: 100%;
       object-fit: cover; display: block;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
       transition: transform 0.5s ease;
     }
     .gallery-item:hover img { transform: scale(1.04); }
-    .lightbox {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.95); z-index: 9000;
-      align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 80px rgba(0,0,0,0.8); }
-    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--red); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
-    .lightbox-nav { display: flex; gap: 1rem; }
-    .lightbox-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.6rem 1.4rem; border-radius: 3px; cursor: pointer; font-size: 1.2rem; transition: background 0.2s; }
-    .lightbox-btn:hover { background: var(--red); border-color: var(--red); }
-    .gallery-extra { display: none; }
-    .gallery-extra.visible { display: contents; }
-    .gallery-show-more { margin-top: 1.5rem; text-align: center; }
-    .gallery-show-more button { background: none; border: 1px solid rgba(200,0,43,0.4); color: var(--red); padding: 0.7rem 2rem; font-family: 'Outfit', sans-serif; font-size: 0.88rem; font-weight: 600; border-radius: 2px; cursor: pointer; transition: all 0.3s; }
-    .gallery-show-more button:hover { background: var(--red); color: #fff; }
-    .menu-card-img-real { 
-      width: 100%; 
-      height: 220px; 
-      object-fit: cover; 
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-      transition: transform 0.4s ease;
-    }
-    .menu-card:hover .menu-card-img-real { transform: scale(1.04); }
 
     /* ── COMBOS ── */
     .combos-section { background: var(--black); }
@@ -809,7 +815,7 @@
     }
     .combo-cta:hover { background: var(--red); color: #fff; border-color: var(--red); }
 
-    /* ── HORARIO & CONTACTO ── */
+    /* ── INFO ── */
     .info-section {
       background: var(--deep);
       border-top: 1px solid var(--border);
@@ -952,17 +958,9 @@
       text-decoration: none;
       transition: all 0.3s;
     }
-    .map-btn-primary {
-      background: var(--red);
-      color: #fff;
-      border: 1px solid var(--red);
-    }
+    .map-btn-primary { background: var(--red); color: #fff; border: 1px solid var(--red); }
     .map-btn-primary:hover { background: var(--red-glow); transform: translateY(-2px); }
-    .map-btn-secondary {
-      background: none;
-      color: rgba(255,255,255,0.7);
-      border: 1px solid var(--border);
-    }
+    .map-btn-secondary { background: none; color: rgba(255,255,255,0.7); border: 1px solid var(--border); }
     .map-btn-secondary:hover { border-color: var(--red); color: var(--red); }
     .map-embed-container {
       position: relative;
@@ -1103,7 +1101,6 @@
     }
     .social-link:hover { border-color: var(--red); background: rgba(200,0,43,0.1); }
 
-    /* ── FLOATING WA ── */
     .float-wa {
       position: fixed;
       bottom: 2rem;
@@ -1127,7 +1124,19 @@
       50% { box-shadow: 0 8px 50px rgba(37,211,102,0.55); }
     }
 
-    /* ── RESPONSIVE ── */
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.95); z-index: 9000;
+      align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 4px; box-shadow: 0 20px 80px rgba(0,0,0,0.8); }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--red); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; }
+    .lightbox-nav { display: flex; gap: 1rem; }
+    .lightbox-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.6rem 1.4rem; border-radius: 3px; cursor: pointer; font-size: 1.2rem; transition: background 0.2s; }
+    .lightbox-btn:hover { background: var(--red); border-color: var(--red); }
+
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
@@ -1149,9 +1158,9 @@
       .map-layout { grid-template-columns: 1fr; }
       .pedidosya-section { padding: 5rem 1.5rem; }
       .map-section { padding: 5rem 1.5rem; }
+      .exec-photos-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
     }
 
-    /* Tab visibility */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
   </style>
@@ -1263,49 +1272,64 @@
         <h2 class="section-title">Nuestro Menú</h2>
       </div>
       <div class="menu-tabs">
-        <button class="tab-btn active" onclick="switchTab('rolls')">Rolls</button>
-        <button class="tab-btn" onclick="switchTab('ejecutivo')">Menú Ejecutivo</button>
-        <button class="tab-btn" onclick="switchTab('wok')">Wok & más</button>
+        <button class="tab-btn active" onclick="switchTab('rolls', this)">Rolls</button>
+        <button class="tab-btn" onclick="switchTab('ejecutivo', this)">Menú Ejecutivo</button>
+        <button class="tab-btn" onclick="switchTab('wok', this)">Wok & más</button>
       </div>
     </div>
 
-    <!-- ROLLS -->
+    <!-- ── TAB: ROLLS (14 fotos) ── -->
     <div id="tab-rolls" class="tab-content active">
       <div class="menu-grid">
+
         <div class="menu-card">
-          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/08bd0bcb-ae7e-4674-876d-a080441c0462.JPG" alt="Philadelphia Roll" loading="lazy">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/1g7nNHYD/08bd0bcb-ae7e-4674-876d-a080441c0462.jpg" alt="Philadelphia Roll" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Philadelphia Roll</h3>
             <p>Salmón, queso crema y pepino. Un clásico que nunca falla.</p>
             <div class="menu-card-footer"><span class="price">A consultar</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/09050e2d-616e-4554-b7db-e216cbcb828b.JPG" alt="California Roll" loading="lazy">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/qhttc3PR/09050e2d-616e-4554-b7db-e216cbcb828b.jpg" alt="California Roll" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>California Roll</h3>
             <p>Surimi, palta y pepino en una combinación perfectamente equilibrada.</p>
             <div class="menu-card-footer"><span class="price">A consultar</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/126de00e-71c1-4ace-bc1f-f3ac8c50cc80.JPG" alt="Ebi Roll" loading="lazy">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/YG44NW5K/126de00e-71c1-4ace-bc1f-f3ac8c50cc80.jpg" alt="Ebi Roll" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Ebi Roll</h3>
             <p>Camarón rebozado, palta y salsa especial de la casa.</p>
             <div class="menu-card-footer"><span class="price">A consultar</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/1708a2e3-ee1a-4d09-a5cb-9602059f4e23.JPG" alt="Nikkei Roll" loading="lazy">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/CnkzXVMX/1708a2e3-ee1a-4d09-a5cb-9602059f4e23.jpg" alt="Nikkei Roll" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Nikkei Roll</h3>
             <p>Fusión nikkei con sabores únicos que sorprenden en cada bocado.</p>
             <div class="menu-card-footer"><span class="price">A consultar</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/1b4fdb99-f1f4-42c6-accf-63b1547effc1.JPG" alt="Geisha de Salmón" loading="lazy">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/680GBwrm/1b4fdb99-f1f4-42c6-accf-63b1547effc1.jpg" alt="Geisha de Salmón" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Geisha de Salmón</h3>
             <p>Nuestra estrella. Salmón premium presentado de forma espectacular.</p>
@@ -1315,18 +1339,119 @@
             </div>
           </div>
         </div>
+
         <div class="menu-card">
-          <img class="menu-card-img-real" src="https://firebrick-gerbil-385835.hostingersite.com/fotos%20platos/24b81096-a1ad-4524-82d8-4ec436728924.JPG" alt="Buenos Aires Roll" loading="lazy">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/KKpkgNsQ/24b81096-a1ad-4524-82d8-4ec436728924.jpg" alt="Buenos Aires Roll" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Buenos Aires Roll</h3>
             <p>Creación exclusiva con toques argentinos y técnica japonesa.</p>
             <div class="menu-card-footer"><span class="price">A consultar</span></div>
           </div>
         </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/R3ZJF8GS/2c46315e-ebae-47b7-a893-d29fb9880723.jpg" alt="Roll Especial" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Roll Especial</h3>
+            <p>Combinación premium de ingredientes frescos con toque de la casa.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/PL5vxcKT/2cdcf73c-4445-4f35-ab91-21b1785a54d5.jpg" alt="Tamago Roll" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Tamago Roll</h3>
+            <p>Suave tortilla japonesa envuelta en arroz de sushi perfectamente sazonado.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/LYqqk1cM/328f7001-e612-447b-96e0-8f0727e0e622.jpg" alt="Spicy Roll" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Spicy Roll</h3>
+            <p>Para los amantes del picante. Combinación intensa con salsa sriracha.</p>
+            <div class="menu-card-footer">
+              <span class="price">A consultar</span>
+              <span class="tag-promo">🌶 Picante</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/njssKDyn/355d70f6-0603-4c79-891c-904b0dad9ecf.jpg" alt="Temaki" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Temaki</h3>
+            <p>Cono de alga nori relleno a mano con tus ingredientes favoritos.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/34yyjvsJ/470d0308-50ff-4ee7-bd88-0e173d4e39e1.jpg" alt="Nigiri Salmón" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Nigiri Salmón</h3>
+            <p>Lámina de salmón fresco sobre bolita de arroz de sushi. Pura elegancia.</p>
+            <div class="menu-card-footer">
+              <span class="price">A consultar</span>
+              <span class="tag-promo">⭐ Especial</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/67p43SzX/4eae46cc-5c86-4f9f-ba5e-2c368411f4c6.jpg" alt="Dragon Roll" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Dragon Roll</h3>
+            <p>Roll cubierto con palta laminada y salsa teriyaki glaseada.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/LYrJxsS6/5142770c-fe71-47e7-8472-d269417cce2f.jpg" alt="Rainbow Roll" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Rainbow Roll</h3>
+            <p>Colorido y delicioso. Cubierto con variedad de pescados frescos.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/tZ11dxLk/56a116a8-dfed-4608-a974-3e2ef4d9d4d5.jpg" alt="Osaka Roll" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Osaka Roll</h3>
+            <p>Nuestra firma. La combinación exclusiva que nos representa.</p>
+            <div class="menu-card-footer">
+              <span class="price">A consultar</span>
+              <span class="tag-promo">🏠 Firma</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- EJECUTIVO -->
+    <!-- ── TAB: EJECUTIVO (6 fotos + tabla) ── -->
     <div id="tab-ejecutivo" class="tab-content">
       <div class="exec-grid">
         <div class="exec-category">
@@ -1372,53 +1497,108 @@
           <div class="exec-note">⏰ Horario ejecutivo: lunes a viernes 11:00 a 14:00 hs</div>
         </div>
       </div>
+
+      <!-- Galería fotográfica ejecutivo -->
+      <div style="margin-top:3rem;">
+        <div class="section-tag" style="margin-bottom:1rem;">Galería</div>
+        <p style="color:rgba(255,255,255,0.45); font-size:0.9rem; margin-bottom:1.5rem;">Una muestra de nuestros platos del menú ejecutivo</p>
+        <div class="exec-photos-grid">
+          <div class="exec-photo-card" onclick="openLightbox('https://i.postimg.cc/gw2LJ54P/5ba732ef-2f85-4b85-a367-d6e48f1b65c4.jpg')">
+            <img src="https://i.postimg.cc/gw2LJ54P/5ba732ef-2f85-4b85-a367-d6e48f1b65c4.jpg" alt="Plato ejecutivo" loading="lazy">
+          </div>
+          <div class="exec-photo-card" onclick="openLightbox('https://i.postimg.cc/LqQYZT0r/67b58278-1bdf-4d06-9bbb-c0a45e7ca68c.jpg')">
+            <img src="https://i.postimg.cc/LqQYZT0r/67b58278-1bdf-4d06-9bbb-c0a45e7ca68c.jpg" alt="Plato ejecutivo" loading="lazy">
+          </div>
+          <div class="exec-photo-card" onclick="openLightbox('https://i.postimg.cc/yJpgSPrg/6a825d77-4ed8-4462-80a2-df59239fb9fb.jpg')">
+            <img src="https://i.postimg.cc/yJpgSPrg/6a825d77-4ed8-4462-80a2-df59239fb9fb.jpg" alt="Plato ejecutivo" loading="lazy">
+          </div>
+          <div class="exec-photo-card" onclick="openLightbox('https://i.postimg.cc/t14nTfD6/6d72e84f-0d0b-40fb-a334-4375e75c4b70.jpg')">
+            <img src="https://i.postimg.cc/t14nTfD6/6d72e84f-0d0b-40fb-a334-4375e75c4b70.jpg" alt="Plato ejecutivo" loading="lazy">
+          </div>
+          <div class="exec-photo-card" onclick="openLightbox('https://i.postimg.cc/N9yy8HWJ/71c13cb2-35c9-4c8c-bb81-61c66f213d85.jpg')">
+            <img src="https://i.postimg.cc/N9yy8HWJ/71c13cb2-35c9-4c8c-bb81-61c66f213d85.jpg" alt="Plato ejecutivo" loading="lazy">
+          </div>
+          <div class="exec-photo-card" onclick="openLightbox('https://i.postimg.cc/Nyj2MVbR/7afbd915-5529-4c6f-822f-a75646da28d1.jpg')">
+            <img src="https://i.postimg.cc/Nyj2MVbR/7afbd915-5529-4c6f-822f-a75646da28d1.jpg" alt="Plato ejecutivo" loading="lazy">
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- WOK -->
+    <!-- ── TAB: WOK & MÁS (12 fotos) ── -->
     <div id="tab-wok" class="tab-content">
       <div class="menu-grid">
+
         <div class="menu-card">
-          <span class="menu-card-img">🍚</span>
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/R3p6nRbJ/7c668128-970e-45a7-ab3d-64f8d959277d.jpg" alt="Arroz Frito con Carne o Pollo" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Arroz Frito con Carne o Pollo</h3>
             <p>Arroz salteado al wok con carne o pollo, vegetales y salsas orientales.</p>
             <div class="menu-card-footer"><span class="price">30.000 Gs</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <span class="menu-card-img">🦐</span>
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/Fk378QF2/8233532c-5d96-4af0-b037-52d1f14297d3.jpg" alt="Arroz Frito Camarón" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Arroz Frito Camarón</h3>
             <p>Camarones salteados con arroz al wok y salsa especial de la casa.</p>
             <div class="menu-card-footer"><span class="price">40.000 Gs</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <span class="menu-card-img">🐟</span>
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/dkzh50FV/8285597a-8a11-4743-9cc1-1db34546547a.jpg" alt="Grille de Tilapia" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Grille de Tilapia</h3>
             <p>Tilapia a la plancha con arroz frito de acompañamiento.</p>
             <div class="menu-card-footer"><span class="price">40.000 Gs</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <span class="menu-card-img">🍜</span>
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/XGZZKCTt/92cc00c0-412f-4712-acb2-13fe50483ed3.jpg" alt="Yakisoba de Pollo o Carne" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Yakisoba de Pollo o Carne</h3>
             <p>Fideos japoneses salteados con vegetales y proteína al gusto.</p>
             <div class="menu-card-footer"><span class="price">30.000 Gs</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <span class="menu-card-img">🥩</span>
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/N9yy8H3L/9471e300-7d52-4f3b-b908-df37b119090e.jpg" alt="Yakisoba de Camarón" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Yakisoba de Camarón</h3>
+            <p>Fideos salteados con camarones frescos y vegetales al wok.</p>
+            <div class="menu-card-footer"><span class="price">40.000 Gs</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/N9WKd0t2/a0fe2c98-948c-4833-81de-7517ce49f813.jpg" alt="Lomo Salteado" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Lomo Salteado</h3>
             <p>Tierna carne salteada con vegetales y salsa japonesa especial.</p>
             <div class="menu-card-footer"><span class="price">45.000 Gs</span></div>
           </div>
         </div>
+
         <div class="menu-card">
-          <span class="menu-card-img">🥩</span>
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/nj6X3LxQ/a3a8fbd0-961c-46ce-92f4-e4414cd0708f.jpg" alt="Ojo de Bife" loading="lazy">
+          </div>
           <div class="menu-card-body">
             <h3>Ojo de Bife con Arroz con Queso</h3>
             <p>Corte premium con arroz gratinado, la fusión más sabrosa del menú.</p>
@@ -1428,6 +1608,65 @@
             </div>
           </div>
         </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/bDKZmvPb/bb40ee4a-a58d-4d07-9608-a9a7cd5424e6.jpg" alt="Poke Sake" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Poke Sake</h3>
+            <p>Bowl de salmón fresco con arroz, vegetales y aderezo especial.</p>
+            <div class="menu-card-footer"><span class="price">30.000 Gs</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/Hcfr6Lmz/d048f9b1-885b-46d8-b8a7-57af4b6b5f13.jpg" alt="Poke Fried" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Poke Fried</h3>
+            <p>Bowl estilo frito con ingredientes crujientes y salsa de la casa.</p>
+            <div class="menu-card-footer"><span class="price">35.000 Gs</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/JHZGvW7Q/f3d7e8a2-1815-4c51-98e2-0dcd23e16d26.jpg" alt="Poke Nara" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Poke Nara</h3>
+            <p>Creación exclusiva inspirada en los sabores de Nara, Japón.</p>
+            <div class="menu-card-footer">
+              <span class="price">35.000 Gs</span>
+              <span class="tag-promo">⭐ Especial</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/jnPLmrqZ/f6db48d1-e415-4c58-8db5-c15a76fee40c.jpg" alt="Plato del día" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Plato del Día</h3>
+            <p>Rotamos opciones frescas según la temporada. Consultá disponibilidad.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img class="menu-card-img-real" src="https://i.postimg.cc/WqghCPpW/fee4a946-4728-476f-854e-5af48d0793f5.jpg" alt="Postre especial" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <h3>Postre Especial</h3>
+            <p>El toque final perfecto. Consultanos por nuestras opciones de postre.</p>
+            <div class="menu-card-footer"><span class="price">A consultar</span></div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1450,12 +1689,8 @@
       </div>
       <div class="pedidosya-right">
         <div class="pedidosya-logo-box">🛵</div>
-        <a href="https://www.pedidosya.com.py" target="_blank" class="pedidosya-cta">
-          Pedir en PedidosYa →
-        </a>
-        <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20hacer%20un%20pedido%20🍣" target="_blank" class="pedidosya-cta-sub">
-          💬 O pedí por WhatsApp
-        </a>
+        <a href="https://www.pedidosya.com.py" target="_blank" class="pedidosya-cta">Pedir en PedidosYa →</a>
+        <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20hacer%20un%20pedido%20🍣" target="_blank" class="pedidosya-cta-sub">💬 O pedí por WhatsApp</a>
       </div>
     </div>
   </section>
@@ -1566,7 +1801,7 @@
     </div>
   </section>
 
-  <!-- MAPA INTERACTIVO -->
+  <!-- MAPA -->
   <section class="map-section" id="ubicacion">
     <div class="section-tag">Cómo llegar</div>
     <h2 class="section-title">Encontranos<br>en Asunción</h2>
@@ -1719,12 +1954,28 @@
   <!-- FLOATING WA -->
   <a href="https://wa.me/595992749480?text=Hola!%20Quiero%20hacer%20un%20pedido%20🍣" target="_blank" class="float-wa" title="Pedir por WhatsApp">💬</a>
 
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">✕</button>
+    <img id="lightbox-img" src="" alt="Foto ampliada">
+  </div>
+
   <script>
-    function switchTab(tab) {
+    function switchTab(tab, btn) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById('tab-' + tab).classList.add('active');
-      event.target.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox(e) {
+      if (e.target === document.getElementById('lightbox')) {
+        document.getElementById('lightbox').classList.remove('open');
+      }
     }
 
     // Intersection observer for fade-in
@@ -1737,7 +1988,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.menu-card, .combo-card, .review-card, .info-card, .feature-card, .map-info-card').forEach(el => {
+    document.querySelectorAll('.menu-card, .combo-card, .review-card, .info-card, .feature-card, .map-info-card, .exec-photo-card').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -1747,17 +1998,14 @@
     // Dynamic open/closed status
     function updateOpenStatus() {
       const now = new Date();
-      const day = now.getDay(); // 0=Sun, 1=Mon ... 6=Sat
+      const day = now.getDay();
       const hour = now.getHours();
       const min = now.getMinutes();
       const time = hour + min / 60;
 
       let isOpen = false;
-      // Lunch (Mon–Fri): 11:00–14:00
       if (day >= 1 && day <= 5 && time >= 11 && time < 14) isOpen = true;
-      // Dinner Sun–Wed: 18:00–23:00
       if ((day === 0 || (day >= 1 && day <= 3)) && time >= 18 && time < 23) isOpen = true;
-      // Dinner Thu–Sat: 18:00–00:00
       if ((day >= 4 && day <= 6) && time >= 18) isOpen = true;
 
       const statusEl = document.getElementById('open-status');
