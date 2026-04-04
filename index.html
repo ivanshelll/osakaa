@@ -324,11 +324,19 @@
       align-items: center;
       justify-content: center;
     }
+    .about-img-frame img {
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
     .about-img-frame::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 70% at 50% 30%, rgba(200,0,43,0.15) 0%, transparent 70%);
+      background: radial-gradient(ellipse 70% 70% at 50% 30%, rgba(200,0,43,0.08) 0%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
     }
     .sushi-art {
       font-size: 8rem;
@@ -415,14 +423,20 @@
       width: 100%;
       height: 220px;
       object-fit: cover;
+      object-position: center;
       display: block;
-      image-rendering: -webkit-optimize-contrast;
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      will-change: transform;
       transition: transform 0.4s ease;
     }
-    .menu-card:hover .menu-card-img-real { transform: scale(1.04); }
+    .menu-card:hover .menu-card-img-real { transform: scale(1.04) translateZ(0); }
     .menu-card-img-wrap {
       overflow: hidden;
       height: 220px;
+      transform: translateZ(0);
     }
     .menu-card-body { padding: 1.2rem 1.4rem 1.5rem; }
     .menu-card-body h3 {
@@ -524,6 +538,10 @@
     .exec-photo-card img {
       width: 100%; height: 100%;
       object-fit: cover;
+      image-rendering: auto;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
       transition: transform 0.4s ease;
     }
     .exec-photo-card:hover img { transform: scale(1.06); }
